@@ -23,7 +23,9 @@ export const EntriesList = () => {
         {entries.map((entry) => (
           <li key={entry.id}>
             <Link href={Routes.ShowEntryPage({ entryId: entry.id })}>
-              <a>{entry.name}</a>
+              <a>
+                {entry.createdAt.toString()} {entry.energy.toString()} - {entry.valence.toString()}
+              </a>
             </Link>
           </li>
         ))}

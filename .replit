@@ -1,2 +1,20 @@
-language = "nodejs"
 run = "yarn dev"
+compile = "yarn build"
+hidden = [".husky", ".vscode", ".next", ".blitz.config.compiled.js", "blitz-env.d.ts",".tsbuildinfo", ".editorconfig"]
+
+entrypoint = "index.ts"
+
+[languages.typescript]
+pattern = "**/{*.ts,*.js,*.tsx,*.jsx}"
+syntax = "typescript"
+
+[languages.typescript.languageServer]
+start = [ "typescript-language-server", "--stdio" ]
+
+[packager]
+language = "nodejs"
+
+[packager.features]
+enabledForHosting = false
+packageSearch = true
+guessImports = false

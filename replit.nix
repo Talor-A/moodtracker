@@ -1,7 +1,8 @@
-{ pkgs }: {
-	deps = [
-    pkgs.nodejs-16_x
-    pkgs.yarn
-	];
-
+{ pkgs }: with pkgs; {
+    deps = [
+        yarn
+        nodejs-16_x
+        nodePackages.typescript
+        nodePackages.typescript-language-server
+    ];
 }

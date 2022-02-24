@@ -20,10 +20,6 @@ export const Entry = () => {
         <h1>Entry {entry.id}</h1>
         <pre>{JSON.stringify(entry, null, 2)}</pre>
 
-        <Link href={Routes.EditEntryPage({ entryId: entry.id })}>
-          <a>Edit</a>
-        </Link>
-
         <button
           type="button"
           onClick={async () => {

@@ -3,12 +3,26 @@ import db from "db"
 import { z } from "zod"
 
 const CreateEntry = z.object({
-  name: z.string(),
+  energy: z.number().int().min(0).max(5),
+  valence: z.number().int().min(0).max(5),
 })
 
-export default resolver.pipe(resolver.zod(CreateEntry), resolver.authorize(), async (input) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  const entry = await db.entry.create({ data: input })
+export default resolver.pipe(
+  resolver.zod(CreateEntry),
+  resolver.authorize(),
+  async ({ energy, valence }, ctx) => {
+    const entry = await db.entry.create({
+      data: {
+        energy,
+        valence,
+        user: {
+          connect: {
+            id: ctx.session.userId,
+          },
+        },
+      },
+    })
 
-  return entry
-})
+    return entry
+  }
+)
