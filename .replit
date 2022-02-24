@@ -1,6 +1,6 @@
 run = "yarn dev"
-compile = "yarn build"
-hidden = [".husky", ".vscode", ".next", ".blitz.config.compiled.js", "blitz-env.d.ts",".tsbuildinfo", ".editorconfig"]
+# compile = "yarn build"
+hidden = [".config",".husky", ".vscode", ".next", ".blitz.config.compiled.js", "blitz-env.d.ts",".tsbuildinfo", ".editorconfig", ".npmrc", ".prettierignore", ".gitignore", ""]
 
 entrypoint = "index.ts"
 
