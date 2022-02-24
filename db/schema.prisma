@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "sqlite"
-  url      = "sqlite:db.sqlite"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -41,16 +41,12 @@ model Session {
   userId Int?
 }
 
-enum TokenType {
-  RESET_PASSWORD
-}
-
 model Token {
-  id          Int       @id @default(autoincrement())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   hashedToken String
-  type        TokenType
+  type        String // "RESET_PASSWORD"
   expiresAt   DateTime
   sentTo      String
 
