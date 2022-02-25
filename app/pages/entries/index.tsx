@@ -1,7 +1,8 @@
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getEntries from "app/entries/queries/getEntries"
+import { EntryButtonGrid } from "app/entries/components/Grid"
 
 const ITEMS_PER_PAGE = 100
 
@@ -41,6 +42,23 @@ export const EntriesList = () => {
   )
 }
 
+const CreateEntry = () => {
+  const [energy, setEnergy] = useState(0)
+  const [valence, setValence] = useState(0)
+
+  return (
+    <>
+      <EntryButtonGrid
+        onChange={({ energy, valence }) => {
+          setEnergy(energy)
+          setValence(valence)
+        }}
+      />
+      energy: {energy} - valence: {valence}
+    </>
+  )
+}
+
 const EntriesPage: BlitzPage = () => {
   return (
     <>
@@ -49,11 +67,7 @@ const EntriesPage: BlitzPage = () => {
       </Head>
 
       <div>
-        <p>
-          <Link href={Routes.NewEntryPage()}>
-            <a>Create Entry</a>
-          </Link>
-        </p>
+        <CreateEntry />
 
         <Suspense fallback={<div>Loading...</div>}>
           <EntriesList />

@@ -1,11 +1,6 @@
 import { resolver } from "blitz"
 import db from "db"
-import { z } from "zod"
-
-const CreateEntry = z.object({
-  energy: z.number().int().min(0).max(5),
-  valence: z.number().int().min(0).max(5),
-})
+import { CreateEntry } from "../validations"
 
 export default resolver.pipe(
   resolver.zod(CreateEntry),
